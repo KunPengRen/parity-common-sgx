@@ -7,6 +7,11 @@ description = "Generic key-value trait"
 license = "GPL-3.0"
 edition = "2018"
 
+[features]
+default = ["mesalock_sgx"]
+mesalock_sgx = ["sgx_tstd"]
+
 [dependencies]
 smallvec = "1.0.0"
 bytes = { package = "parity-bytes", version = "0.1", path = "../parity-bytes" }
+sgx_tstd = { rev = "v1.0.9", git = "https://github.com/baidu/rust-sgx-sdk.git", optional = true }

@@ -14,12 +14,25 @@
 // You should have received a copy of the GNU General Public License
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
-use kvdb::{DBOp, DBTransaction, DBValue, KeyValueDB};
-use parking_lot::RwLock;
+#![cfg_attr(not(target_env = "sgx"), no_std)]
+#![cfg_attr(target_env = "sgx", feature(rustc_private))]
+
+#[cfg(not(target_env = "sgx"))]
+#[macro_use]
+extern crate sgx_tstd as std;
+
+use std::prelude::v1::*;
+
+//extern crate parking_lot;
+extern crate kvdb;
+
 use std::{
 	collections::{BTreeMap, HashMap},
 	io,
 };
+//use parking_lot::RwLock;
+use std::sync::SgxRwLock as RwLock;
+use kvdb::{DBOp, DBTransaction, DBValue, KeyValueDB};
 
 /// A key-value database fulfilling the `KeyValueDB` trait, living in memory.
 /// This is generally intended for tests and is not particularly optimized.
@@ -60,7 +73,7 @@ impl KeyValueDB for InMemory {
 	}
 
 	fn write_buffered(&self, transaction: DBTransaction) {
-		let mut columns = self.columns.write();
+		let mut columns = self.columns.write().unwrap();
 		let ops = transaction.ops;
 		for op in ops {
 			match op {
