@@ -9,7 +9,9 @@ edition = "2018"
 
 [dependencies]
 rlp = { version = "0.4", path = "../../../rlp", default-features = false }
+sgx_tstd = { rev = "v1.1.0", git = "https://github.com/apache/teaclave-sgx-sdk.git", optional = true }
 
 [features]
-default = ["std"]
-std = ["rlp/std"]
+default = ["std", "mesalock_sgx"]
+std = ["rlp/std", "mesalock_sgx"]
+mesalock_sgx = ["sgx_tstd"]

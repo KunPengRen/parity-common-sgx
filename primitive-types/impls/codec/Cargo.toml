@@ -8,8 +8,10 @@ description = "Parity Codec serialization support for uint and fixed hash."
 edition = "2018"
 
 [dependencies]
-parity-scale-codec = { version = "1.0.6", default-features = false }
+parity-scale-codec = { git = "https://github.com/mesalock-linux/parity-scale-codec-sgx", default-features = false }
+sgx_tstd = { rev = "v1.1.0", git = "https://github.com/apache/teaclave-sgx-sdk.git", optional = true }
 
 [features]
-default = ["std"]
-std = ["parity-scale-codec/std"]
+default = ["std", "mesalock_sgx"]
+std = ["parity-scale-codec/std", "mesalock_sgx"]
+mesalock_sgx = ["sgx_tstd"]

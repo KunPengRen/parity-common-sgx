@@ -14,10 +14,10 @@
 // You should have received a copy of the GNU General Public License
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
-#![cfg_attr(not(target_env = "sgx"), no_std)]
-#![cfg_attr(target_env = "sgx", feature(rustc_private))]
+#![cfg_attr(all(feature = "mesalock_sgx", not(target_env = "sgx")), no_std)]
+#![cfg_attr(all(target_env = "sgx", target_vendor = "mesalock"), feature(rustc_private))]
 
-#[cfg(not(target_env = "sgx"))]
+#[cfg(all(feature = "mesalock_sgx", not(target_env = "sgx")))]
 #[macro_use]
 extern crate sgx_tstd as std;
 

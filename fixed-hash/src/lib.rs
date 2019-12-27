@@ -7,6 +7,12 @@
 // except according to those terms.
 
 #![cfg_attr(not(feature = "std"), no_std)]
+#![cfg_attr(all(feature = "mesalock_sgx", not(target_env = "sgx")), no_std)]
+#![cfg_attr(all(target_env = "sgx", target_vendor = "mesalock"), feature(rustc_private))]
+
+#[cfg(all(feature = "mesalock_sgx", not(target_env = "sgx")))]
+#[macro_use]
+extern crate sgx_tstd as std;
 
 // Re-export liballoc using an alias so that the macros can work without
 // requiring `extern crate alloc` downstream.
