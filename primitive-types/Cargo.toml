@@ -8,7 +8,7 @@ description = "Primitive types shared by Ethereum and Substrate"
 edition = "2018"
 
 [dependencies]
-sgx_tstd = { rev = "v1.1.0", git = "https://github.com/apache/teaclave-sgx-sdk.git", optional = true }
+sgx_tstd = { rev = "v1.1.3", git = "https://github.com/apache/teaclave-sgx-sdk.git", optional = true }
 fixed-hash = { version = "0.5", path = "../fixed-hash", default-features = false }
 uint = { version = "0.8.1", path = "../uint", default-features = false }
 impl-serde = { version = "0.2.1", path = "impls/serde", default-features = false, optional = true }

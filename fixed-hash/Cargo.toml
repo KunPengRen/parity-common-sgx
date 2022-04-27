@@ -14,7 +14,7 @@ edition = "2018"
 features = ["quickcheck", "api-dummy"]
 
 [dependencies]
-sgx_tstd = { rev = "v1.1.0", git = "https://github.com/apache/teaclave-sgx-sdk.git", optional = true }
+sgx_tstd = { rev = "v1.1.3", git = "https://github.com/apache/teaclave-sgx-sdk.git", optional = true }
 byteorder = { version = "1.3.2", git = "https://github.com/mesalock-linux/byteorder-sgx", optional = true, default-features = false }
 quickcheck = { version = "0.9.0", git = "https://github.com/mesalock-linux/quickcheck-sgx", optional = true }
 rand = { version = "0.7.2", git = "https://github.com/mesalock-linux/rand-sgx", optional = true, default-features = false }
@@ -28,7 +28,7 @@ rand_xorshift = "0.2.0"
 #libc = { version = "0.2.65", optional = true, default-features = false }
 
 [target.'cfg(not(target_env = "sgx"))'.dependencies]
-sgx_libc = { rev = "v1.1.0", git = "https://github.com/apache/teaclave-sgx-sdk.git", optional = true}
+sgx_libc = { rev = "v1.1.3", git = "https://github.com/apache/teaclave-sgx-sdk.git", optional = true}
 
 [features]
 default = ["std", "libc", "rand", "rustc-hex", "byteorder", "mesalock_sgx"]
